@@ -172,7 +172,7 @@ EOF
 
 # 代码签名
 binary-sign-tool sign -inFile /opt/neovim-0.11.4-ohos-arm64/bin/nvim -outFile /opt/neovim-0.11.4-ohos-arm64/bin/nvim -selfSign 1
-find /opt/neovim-0.11.4-ohos-arm64/lib/nvim/parser | xargs -I {} binary-sign-tool sign -inFile {} -outFile {} -selfSign 1 
+find /opt/neovim-0.11.4-ohos-arm64/lib/nvim/parser -type f | xargs -I {} binary-sign-tool sign -inFile {} -outFile {} -selfSign 1 
 
 # 打包最终产物
 cd /opt
