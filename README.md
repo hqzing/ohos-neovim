@@ -36,7 +36,7 @@ export TERMINFO=/data/neovim-0.11.4-ohos-arm64/share/terminfo
 
 这个 nvim 在不同的上位机终端环境中都是适配的，包括 Cmd、PowerShell、Windows Terminal。
 
-不过需要注意，HOME、TERM、TERMINFO 这几个变量缺一不可，因为它们各自处理了不同的问题。
+需要注意，HOME、TERM、TERMINFO 这几个变量缺一不可，因为它们各自处理了不同的问题。
 
 尤其 TERM 变量的值，是有约束的。我们设置的 TERM 值必须是 screen 家族或者 tmux 家族的值。比如这些：screen, screen-256color, tmux, tmux-256color。
 
