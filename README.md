@@ -36,7 +36,7 @@ export TERMINFO=/data/neovim-0.11.4-ohos-arm64/share/terminfo
 
 这个 nvim 在不同的上位机终端环境中都是适配的，包括 Cmd、PowerShell、Windows Terminal。
 
-但需要注意的是，我们设置的 TERM 值必须是 screen 家族或者 tmux 家族的值。比如这些：screen,screen-256color,tmux,tmux-256color。
+但需要注意的是，我们设置的 TERM 值必须是 screen 家族或者 tmux 家族的值。比如这些：screen, screen-256color, tmux, tmux-256color。
 
 存在这个限制，是因为 hdc 在连接 OpenHarmony 设备时会创建一个伪终端（pseudo-terminal），它的行为并不完全像一个标准的 xterm 或 xterm-256color 终端，而更接近于 screen 或 tmux 这类多路复用器的终端模拟方式。只有设置成这两个家族的值，hdc 发送的键码和 terminfo 定义的键码才能匹配，才不会出现按键错位。
 
@@ -75,7 +75,7 @@ export TERM=xterm
 zsh
 ```
 
-这个 zsh 内置了一些常用的 terminfo：xterm,xterm-256color,xterm-color,screen,screen-256color,tmux,tmux-256color,linux,vt100,vt102,ansi
+这个 zsh 内置了一些常用的 terminfo：xterm, xterm-256color, xterm-color, screen, screen-256color, tmux, tmux-256color, linux, vt100, vt102, ansi
 
 建议结合你自己所使用的终端环境情况，优先从这个列表里面选一个适合你的值作为你的 TERM 环境变量值。
 
