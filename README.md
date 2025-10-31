@@ -12,7 +12,7 @@
 
 如果你一定要使用 neovim，那也是可以的，只是操作比较复杂。
 
-由于当前鸿蒙 PC 还不支持 在 HiShell 里面运行二进制，所以我们不能以“解压 + 配 PATH” 方式使用。你需要把它做成 hnp 包，然后才能在 HiShell 中调用。详情请参考 [Termony
+由于当前鸿蒙 PC 还不支持 在 HiShell 里面运行用户目录内的二进制，所以我们不能以“解压 + 配 PATH” 方式使用。你需要把它做成 hnp 包，然后才能在 HiShell 中调用。详情请参考 [Termony
 ](https://github.com/TermonyHQ/Termony) 的方案。
 
 **2\. 在鸿蒙开发板中使用**
