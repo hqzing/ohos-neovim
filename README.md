@@ -3,6 +3,7 @@
 本项目为 OpenHarmony 平台编译了 neovim，并发布预构建包。
 
 ## 获取软件包
+
 前往 [release 页面](https://github.com/Harmonybrew/ohos-zsh/releases) 获取。
 
 ## 基础用法
@@ -59,6 +60,8 @@ export PATH=/opt/neovim-0.11.4-ohos-arm64/bin
 # 现在可以使用 nvim 命令了
 ```
 
+一般情况下，在容器中不需要额外设置环境变量就能正常使用。如果你仍遇到了问题，请看下一个章节“进阶用法 -> 使用自定义的 TERM”。
+
 ## 进阶用法
 **1\. 单文件使用**
 
@@ -66,28 +69,24 @@ export PATH=/opt/neovim-0.11.4-ohos-arm64/bin
 
 不完美的点：
 1. neovim 软件包里面有一些 `lib/nvim/parser/*.so` 文件，里面是一些编程语言的语法解析引擎，供 neovim 做语法高亮、缩进、折叠、增量选择、文本对象、查询等功能使用。如果单文件使用、不带这些文件到安装目录中，neovim 就无法正常使用这些功能，并退回到正则高亮模式。
-2. 我们在分发 neovim 的时候，在软件包里面里面放置了一个 `share/terminfo` 目录，里面包含了一个完整的 terminfo 数据库，可以供用户应对各种复杂的终端环境。如果单文件使用、且系统上没有提供你所需的 terminfo 数据库，那可能会导致 neovim 出现键盘错位、鼠标不可用等异常情况。
+2. 我们在分发 neovim 的时候，在软件包里面里面放置了一个 `share/terminfo` 目录，里面包含了一个完整的 terminfo 数据库，可以供用户应对各种复杂的终端环境。如果单文件使用、且系统上没有提供你所需的 terminfo 数据库，那就有可能会导致 neovim 出现按键错位、鼠标不可用等异常情况（不是每一个环境都一定会遇到，这要看你具体情况）。
 
 **2\. 使用自定义的 TERM**
 
-如果这个 zsh 在你的设备上不能正常运行（如键盘按键异常等），可以尝试先设置 TERM 这个环境变量，再启动它。
+如果这个 neovim 在你的设备上不能正常运行（如键盘按键异常等），可以尝试先设置 TERM 和 TERMINFO 环境变量，再启动它。
 
 ```sh
-export TERM=xterm
-zsh
+export TERM=screen-256color
+export TERMINFO=<neovim安装目录的绝对路径>/share/terminfo
+nvim
 ```
 
-这个 zsh 内置了一些常用的 terminfo：xterm, xterm-256color, xterm-color, screen, screen-256color, tmux, tmux-256color, linux, vt100, vt102, ansi
+为了让用户能应对各种复杂的终端场景，我们在软件包里面里面放置了一个 `share/terminfo` 目录，里面包含了一个完整的 terminfo 数据库。
 
-建议结合你自己所使用的终端环境情况，优先从这个列表里面选一个适合你的值作为你的 TERM 环境变量值。
+因此，你只要将 TERMINFO 环境变量填成我们带进来的这个`share/terminfo` 目录，你就可以把 TERM 设置为任何有效值。
 
-如果这里的值也不能满足（极小概率，只有一些非常深度的使用场景可能遇到），你需要自己弄一套 terminfo 数据库到设备上，把 TERMINFO 环境变量值设置成你自己的 terminfo 数据库目录，再设一个自己想要的 TERM 环境变量值。
+选择一个与你终端环境匹配的 TERM 值，这应该可以解决你的绝大多数问题。如果还不能解决，可以在 issue 里面发起讨论。
 
 ## 从源码构建
-需要用一台 Linux x64 服务器来运行项目里的 build.sh，以实现 zsh 的交叉编译。
 
-这里以 Ubuntu 24.04 x64 作为示例：
-```sh
-sudo apt update && sudo apt install -y build-essential unzip
-./build.sh
-```
+这一版 neovim 是在鸿蒙容器中进行原生编译得到的。构建脚本是项目根目录的 build.sh，流水线配置在 [.github/workflows/ci.yml] 文件中。想了解技术细节的的话可以查看这两个文件。
