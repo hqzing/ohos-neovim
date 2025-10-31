@@ -125,7 +125,7 @@ cmake -B build -G Ninja \
 ninja -C build install
 cd ..
 
-# 编译 ncurses，获取 terminfo 数据库，并把 terminfo 数据库复制到 neovim 的安装目录中
+# 编译 ncurses，生成 terminfo 数据库，并把 terminfo 数据库复制到 neovim 的安装目录中
 # 并不是所有 OpenHarmony 环境上都有 terminfo 数据库，为了保证尽量在更多的环境可用，这里需要放一份 terminfo 数据库到 neovim 的安装目录中，随 neovim 一同发布
 # terminfo 数据库可以通过编译 ncurses 得到
 curl -L -O https://mirrors.ustc.edu.cn/gnu/ncurses/ncurses-6.5.tar.gz
