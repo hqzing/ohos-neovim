@@ -138,7 +138,7 @@ cd ncurses-6.5
 make -j$(nproc)
 make install
 cd ..
-cp -r /opt/neovim-0.11.4-ohos-arm64/share/terminfo /opt/neovim-0.11.4-ohos-arm64/share/
+cp -r /opt/ncurses-6.5-ohos-arm64/share/terminfo /opt/neovim-0.11.4-ohos-arm64/share/terminfo
 
 # 履行开源义务，把使用的开源软件的 license 全部聚合起来放到制品中
 neovim_txt=$(cat neovim-0.11.4/LICENSE.txt; echo)
@@ -168,8 +168,7 @@ ncurses
 $ncurses_txt
 
 EOF
-)" >> licenses.txt
-cp licenses.txt /opt/neovim-0.11.4-ohos-arm64/
+)" >> /opt/neovim-0.11.4-ohos-arm64/licenses.txt
 
 # 代码签名
 binary-sign-tool sign -inFile /opt/neovim-0.11.4-ohos-arm64/bin/nvim -outFile /opt/neovim-0.11.4-ohos-arm64/bin/nvim -selfSign 1
