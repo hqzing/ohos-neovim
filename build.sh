@@ -171,7 +171,7 @@ $ncurses_txt
 
 EOF
 )" >> licenses.txt
-
+cp licenses.txt /opt/neovim-0.11.4-ohos-arm64/licenses.txt
 
 # 代码签名
 binary-sign-tool sign -inFile /opt/neovim-0.11.4-ohos-arm64/bin/nvim -outFile /opt/neovim-0.11.4-ohos-arm64/bin/nvim -selfSign 1
